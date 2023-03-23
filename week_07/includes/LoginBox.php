@@ -1,23 +1,31 @@
 <?php
 
-	class LoginBox
-	{
+  /**
+	 * ADD COMMENT HERE.  What is the class for?
+	 */
+	class LoginBox {
 
 		private string $username;
 		private string $password;
-		protected string $submit;
+		
+		protected string $submit;  // Add blank between types, much eaiser to read.
 
-
-		function __construct(string $submit ='Submit')
-		{
+    /**
+	   * ADD COMMENT HERE
+	   */
+		function __construct(string $submit ='Submit') {
 			$this->submit = $submit;
 			$this->username = 'student';
 			$this->password = 'CIS166';
 		}
 
-		// Function to return username and password fields and submit button
-		function DisplayLogin():string
-		{
+	  /**
+	   * Function to return username and password fields and submit button.
+		 *
+		 * @return string
+		 *  Returns the HTML form element as string.    
+	   */
+		function DisplayLogin():string {
 			// Username
 			$username = '<label for="username" id="username" name="username">Username:</label><br />
 				<input type="text" id="username" name="username"><br />';
