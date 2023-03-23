@@ -39,9 +39,10 @@
 		// Function to authenticate username/password
 		function CheckLogin($username, $password):void
 		{
+			// SPACE BETWEEN if and opening (, also between colsing ) and opening {
 			if($username != $this->username OR $password != $this->password){
 				echo $this->FailRedirect();
-			} else {
+			} else { // ELSE (and else if) ALWAYS goes on new line. 
 				echo $this->SuccessRedirect();
 			}
 		}
