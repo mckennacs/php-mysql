@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,300&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  display: block;
+  font-family: 'Open Sans', sans-serif;
+  /* Gradient from https://gradienta.io/bright-rain*/
+  background: radial-gradient(50% 123.47% at 50% 50%, #00FF94 0%, #720059 100%),
+  linear-gradient(121.28deg, #669600 0%, #FF0000 100%),
+  linear-gradient(360deg, #0029FF 0%, #8FFF00 100%),
+  radial-gradient(100% 164.72% at 100% 100%, #6100FF 0%, #00FF57 100%),
+  radial-gradient(100% 148.07% at 0% 0%, #FFF500 0%, #51D500 100%) no-repeat, fixed;
+  background-size: contain;
+  background-blend-mode: screen, color-dodge, overlay, difference, normal;
+}
+
+form {
+  width: 50%;
+  margin: 10% auto;
+  padding: 2%;
+  background-color: rgba(255, 255, 255, 0.63);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.34);
+}
+
+input {
+  width: 70%;
+  height: 2rem;
+  margin: auto;
+  background-color: rgba(255, 255, 255, 0.63);
+}
+
+label {
+  width: 50%;
+  height: 30px;
+  margin: 1%;
+}
+
+#submit {
+  width: 30%;
+  font-size: 1rem;
+  height: 2.5rem;
+  border-radius: 0.5rem;
+}
+
+#submit:hover{
+  background-color: rgba(0, 255, 148, 0.43);
+}
+
+#username, #password {
+  width: 80%;
+  margin: auto;
+}
+
+.error {
+  color: #000;
+  text-align: center;
+  border: 2px solid red;
+  background-color: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(10px);
+  width: 30%;
+  margin: 2% auto;
+  padding: 1%;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  padding: 1%;
+
+}
+
+h3 {
+  text-align: center;
+  font-size: xx-large;
+  background-color: rgba(255, 255, 255, 0.63);
+  backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 8%;
+  margin: 15% auto;
+  width: 60%;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.34);
+}
+
