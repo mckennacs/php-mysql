@@ -15,7 +15,24 @@ Module 11 Assignment
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <title>LoginBox</title>
 </head>
+<header>
+  <nav>
+    <ul>
+      <li>
+        <a href="index.php">Log In</a>
+      </li>
+      <li>
+        <a href="admin.php">Admin</a>
+      </li>
+      <li>
+        <a href="signup-form.php">Sign Up</a>
+      </li>
+    </ul>
+  </nav>
+  <h2>Log In</h2>
+</header>
 <body>
+<main>
 <?php
 
 	// Include LoginBox
@@ -42,6 +59,6 @@ Module 11 Assignment
   }
 
 ?>
-
+</main>
 </body>
 </html>

@@ -15,12 +15,28 @@ Module 11 Assignment
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<title>Admin Page</title>
 </head>
+<header>
+  <nav>
+    <ul>
+      <li>
+        <a href="index.php">Log In</a>
+      </li>
+      <li>
+        <a href="admin.php">Admin</a>
+      </li>
+      <li>
+        <a href="signup-form.php">Sign Up</a>
+      </li>
+    </ul>
+  </nav>
+  <h2>Admin</h2>
+</header>
 <body>
 
 <?php
-	$sql = "SELECT * FROM users;";
-  $result = mysqli_query($conn, $sql);
-	$resultCheck = mysqli_num_rows($result);
+	$sql = "SELECT * FROM users;"; // MySQL select statement
+  $result = mysqli_query($conn, $sql); // Uses mysqli_query function to use the $conn mysqli_connect function as defined in dbh.inc.php
+	$resultCheck = mysqli_num_rows($result); // Checks to see if any rows are present in table
 
   echo "<table>";
   echo "<tr>";
@@ -32,6 +48,7 @@ Module 11 Assignment
   echo "<th>Phone Number</th>";
   echo "</tr>";
 
+  // If there are any rows in users table, outputs HTML table containing the value of each field for every row
 	if ($resultCheck > 0) {
 		while ($row = mysqli_fetch_assoc($result)) {
       echo "<tr>";

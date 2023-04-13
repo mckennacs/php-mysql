@@ -11,7 +11,6 @@ html {
 body {
   margin: 0;
   padding: 0;
-  display: block;
   font-family: 'Open Sans', sans-serif;
   /* Gradient from https://gradienta.io/bright-rain*/
   background: radial-gradient(50% 123.47% at 50% 50%, #00FF94 0%, #720059 100%),
@@ -23,14 +22,46 @@ body {
   background-blend-mode: screen, color-dodge, overlay, difference, normal;
 }
 
+nav ul {
+  display: flex;
+  margin: 0;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: stretch;
+  list-style: none;
+  border-bottom: 1px solid black;
+  padding: 0.2rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.32);
+}
+
+ul li {
+  width: 100%;
+  height: auto;
+  margin: 0.5%;
+  /*padding: 5%;*/
+}
+
+ul li a{
+  width: 100%;
+  border: 1px solid black;
+  padding: 1% 30%;
+  transition: 0.3s;
+  border-radius: 0.5rem;
+}
+
+ul li a:hover {
+  background-color: rgba(76, 199, 241, 0.61);
+}
+
 input {
   font-family: 'Open Sans', sans-serif;
 }
 
 form {
   width: 50%;
-  margin: 10% auto;
-  padding: 2%;
+  margin: 2% auto;
+  padding: 3% 0;
   background-color: rgba(255, 255, 255, 0.63);
   backdrop-filter: blur(10px);
   border-radius: 1rem;
@@ -47,9 +78,8 @@ input {
 }
 
 label {
-  width: 50%;
-  height: 30px;
-  margin: 1%;
+  width: 80%;
+  margin: auto;
 }
 
 #buttons-div {
@@ -70,14 +100,16 @@ a {
 }
 
 #sign-up {
-
   text-align: center;
   width: 30%;
   height: 2.5rem;
-  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid black;
   border-radius: 0.5rem;
   margin: auto;
-  padding: 1%;
+  padding: 0;
   background-color: rgba(255, 255, 255, 0.63);
   transition: 0.3s;
 }
@@ -86,7 +118,7 @@ a {
   background-color: rgba(0, 255, 148, 0.43);
 }
 
-#username, #password {
+.form-field {
   width: 80%;
   margin: auto;
 }
@@ -103,7 +135,7 @@ a {
 }
 
 main {
-  width: 80%;
+  width: 90%;
   margin: auto;
   padding: 1%;
 }
@@ -125,9 +157,18 @@ table, tr, td, th{
   border-collapse: collapse;
 }
 
-h3 {
-  /*text-align: center;*/
+h3, h2 {
+  text-align: center;
+  letter-spacing: 0.2rem;
   font-size: xx-large;
+  background-color: rgba(255, 255, 255, 0.63);
+  padding: 0.7rem;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  margin-top: 1rem;
+}
+
+#success {
   background-color: rgba(255, 255, 255, 0.63);
   backdrop-filter: blur(10px);
   border-radius: 1rem;
