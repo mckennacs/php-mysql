@@ -20,6 +20,8 @@ Module 9 Assignment
 
   // Creates new LoginBox object
   $login_box = new LoginBox();
+	
+	// NO SPACE BEFORE DASH
   $login_box ->SetLabel('Log In');
 
   // Defines Exception message in case LoginBox can not be displayed
@@ -35,6 +37,12 @@ Module 9 Assignment
 
   // Checks login credentials once user hits submit
   if(isset($_POST["submit"])){
+		
+		// YOU MUST MAKE SURE THIS DOES NOT ERROR BY CHECKING/VALIDATING VARAIBLES
+		// $username = $_POST["username"] ?? '';
+		// $password = $_POST["password"] ?? '';
+		// $login_box->CheckLogin($username, $password);
+		// NO SPACE BEFORE DASH
     $login_box ->CheckLogin($_POST["username"], $_POST["password"]);
   }
 
