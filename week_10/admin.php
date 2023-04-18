@@ -34,8 +34,13 @@ Module 11 Assignment
 <body>
 
 <?php
-	$sql = "SELECT * FROM users;"; // MySQL select statement
-  $result = mysqli_query($conn, $sql); // Uses mysqli_query function to use the $conn mysqli_connect function as defined in dbh.inc.php
+	// MySQL select statement.
+	$sql = "SELECT * FROM users;";
+	
+	// Uses mysqli_query function to use the $conn mysqli_connect function as defined in dbh.inc.php
+  $result = mysqli_query($conn, $sql); 
+	
+	// Checks to see if any rows are present in table.
 	$resultCheck = mysqli_num_rows($result); // Checks to see if any rows are present in table
 
   echo "<table>";
