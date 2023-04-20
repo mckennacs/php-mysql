@@ -1,3 +1,9 @@
+<!--
+Chris McKenna
+CIS 166AE
+Module 12 Assignment
+-->
+
 <?php
 	include_once ('dbh.inc.php');
 	// Class that creates login box with username/password
@@ -19,6 +25,8 @@
 
 		// getAccountForm variables
 		private array $account_fields;
+
+		private array $update_account_fields;
 
 		// Submit button
 		protected string $submit;
@@ -103,7 +111,7 @@
 		*/
 		function getAccountForm():string
 		{
-			return '<form action="includes/signup.inc.php" method="POST">' . $this->new_username . $this->new_password . $this->new_first_name
+			return '<form action="../signup.inc.php" method="POST">' . $this->new_username . $this->new_password . $this->new_first_name
 				. $this->new_last_name . $this->new_email . $this->new_phone . '<br />' . '<input type="submit" id="submit" name="submit" value="'. $this->submit . '"></form>';
 		}
 
@@ -156,7 +164,7 @@
 		* @return void
 		* 	Does not return a variable. If login fields are good, it sends MySQL query. If not, outputs items of $errors array
 	  */
-		function createAccount(array $new_account_info, object $conn):void
+		function createAccount(array $new_account_info,object $conn):void
 		{
 			$errors =[];
 			$valid_phone_pattern = '^[1-9]{1}[0-9]{2}[-|.]{1}[1-9]{1}[0-9]{2}[-|.]{1}[0-9]{4}';
@@ -198,11 +206,28 @@
 				$email = stripslashes($conn ->real_escape_string($new_account_info[4]));
 				$phone = stripslashes($conn ->real_escape_string($new_account_info[5]));
 
-				// Sql insert statement using above variables
-				$sql = "INSERT INTO users (name, password, first_name, last_name, email, phone)
-					VALUES ('$u_name', '$pwd', '$first', '$last', '$email', '$phone');";
-				mysqli_query($conn, $sql);
-				header("Location: ../new-account-success.html");
+				// SELECT statement to check if $u_name already exits in database
+				// $sql = "SELECT * from users WHERE 'name' = " . $u_name . ";";
+				$sql = "SELECT `name` FROM `users` WHERE name ='" . $u_name . "';";
+				// Queries $conn using above $sql string
+				$result = mysqli_query($conn, $sql);
+				// Uses mysqli_num_rows to get the number of rows returned with query
+				$name_check = mysqli_num_rows($result);
+
+				// If there are
+				if ($name_check > 0) {
+					header("Refresh:5, url=week_11/admin.php");
+					echo "<p>User already exists. Enter new username. You will be redirected to signup page in 5 seconds.</p>" . mysqli_error($conn);
+					// echo "<p><a href='../signup-form.php'>Go back</a></p>";
+				}
+				else {
+					// Sql insert statement using above variables
+					$sql = "INSERT INTO users (name, password, first_name, last_name, email, phone)
+						VALUES ('$u_name', '$pwd', '$first', '$last', '$email', '$phone');";
+					mysqli_query($conn, $sql);
+					header("Location: new-account-success.php");
+				}
+
 			}
 			else
 			{
@@ -214,7 +239,78 @@
 				echo '<a href="../signup-form.php">Go back</a>'; // Link to return to signup form
 			}
 		}
+		/**
+		 * Function to update existing account information by querying MySQL database
+		 *
+		 * @param object $conn
+		 *		Object created using mysqli_connect function and MySQL database login info, defined in dbh.inc.php
+		 * @param array $update_account_info
+		 *		An array containing elements retrieved from $_POST, taken from
+		 * @param int $id
+		 * 	User ID number, retrieved from URL query string
+		 * @var array $update_errors
+		 * 	Array containing error messages for field validation. If a field is invalid a string containing the error message is added to the array
+		 * @var string $valid_phone_pattern
+		 * 	String used for pattern matching in regular expressions. This checks if the number and type of characters entered would make a valid phone number
+		 * @return void
+		 * 	Does not return a variable. If login fields are good, it sends MySQL query. If not, outputs items of $errors array
+		 */
 
+		function updateAccount(array $update_account_info, int $id, object $conn):void
+		{
+			$update_errors =[];
+			$valid_phone_pattern = '^[1-9]{1}[0-9]{2}[-|.]{1}[1-9]{1}[0-9]{2}[-|.]{1}[0-9]{4}';
+
+			// If no fields are filled in, adds error message to $update_errors
+			if(!$_POST['username'] || !$_POST['password'] || !$_POST['first-name'] || !$_POST['last-name'] || !$_POST['email'] || !$_POST['phone'])
+			{
+				$update_errors[] = '<p>Please enter all required information</p>';
+			}
+			// Checks to see if email is valid
+			if (!filter_var($update_account_info[4], FILTER_VALIDATE_EMAIL))
+			{
+				$update_errors[] = '<p>Invalid email</p>';
+			}
+			// // Uses preg_match to check if phone number is valid. If not, adds error message to $errors
+			if (!preg_match("/$valid_phone_pattern/", $update_account_info[5]))
+			{
+				$update_errors[] = '<p>Invalid phone number</p>';
+			}
+
+			// If no objects in the $update_errors array, variables from $update_account_info are assigned to items in the class $update_account_fields array
+			if (!$update_errors)
+			{
+				$this->update_account_fields[0] = trim($update_account_info[0]); // Username
+				$this->update_account_fields[1] = trim($update_account_info[1]); // Password
+				$this->update_account_fields[2] = trim($update_account_info[2]); // First name
+				$this->update_account_fields[3] = trim($update_account_info[3]); // Last name
+				$this->update_account_fields[4] = trim($update_account_info[4]); // Email
+				$this->update_account_fields[5] = trim($update_account_info[5]); // Phone number
+
+				$update_u_name = stripslashes($conn ->real_escape_string($update_account_info[0]));
+				$update_pwd = stripslashes($conn ->real_escape_string($update_account_info[1]));
+				$update_first = stripslashes($conn ->real_escape_string($update_account_info[2]));
+				$update_last = stripslashes($conn ->real_escape_string($update_account_info[3]));
+				$update_email = stripslashes($conn ->real_escape_string($update_account_info[4]));
+				$update_phone = stripslashes($conn ->real_escape_string($update_account_info[5]));
+
+				$sql = "UPDATE `users`";
+				$sql .= "SET `name` = '$update_u_name', `password` = '$update_pwd', `first_name` = '$update_first', `last_name` = '$update_last', `email` = '$update_email', `phone` = '$update_phone'";
+				$sql .= "WHERE id = '$id';";
+				mysqli_query($conn, $sql);
+				header("Refresh:5, url=admin.php");
+			}
+			else
+			{
+				// If there are items in the $update_errors array, prints them each on its own line
+				foreach($update_errors as $error)
+				{
+					echo "<p>$error</p>";
+				}
+				// Link to return to signup form
+				echo '<a href="week_11/signup-form.php">Go back</a>';
+			}
+		}
 	 /**
 	  * Function to direct user to success.html if login successful
 	  *
