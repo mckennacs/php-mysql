@@ -6,7 +6,7 @@ Module 12 Assignment
 
 <?php
 
-	include('includes/dbh.inc.php');
+	include('includes/dbh.inc.php'); // NOT NEEDED AS loginBox.php INCLUDES THIS
 	include_once('includes/LoginBox.php');
 
 	$new_account = new LoginBox();
@@ -24,10 +24,5 @@ Module 12 Assignment
 	];
 
 	// Creates new user account using signup form fields as stored in $new_account_info array
-	$new_account->createAccount($new_account_info, $conn);
-
-
-
-
-
-
+	$new_account->createAccount($new_account_info, $conn);  // NO NEED TO PASS $conn, AS loginBox.php INCLUDES dbh.inc.php
+?>
