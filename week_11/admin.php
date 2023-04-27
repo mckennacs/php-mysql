@@ -66,9 +66,11 @@ Module 12 Assignment
       echo "<td>" . $row['email'] . "</td>";
       echo "<td>" . $row['phone'] . "</td>";
       // echo "<td><form action='edit.php' method='GET'><input type='submit' name='" . $row['id'] . "' value='Edit'></form></td>";
-      echo "<td><form action='edit.php' method='GET' class='admin-form'><button>Edit<input type='hidden' name='id' value='" . $row['id'] . "'></button></form>";
-      echo "<form action='delete.php' method='GET' class='admin-form'><button>Delete<input type='hidden' name='id' value='" . $row['id'] . "'></form></td>";
-      echo "</tr>";
+      //echo "<td><form action='edit.php' method='GET' class='admin-form'><button>Edit<input type='hidden' name='id' value='" . $row['id'] . "'></button></form>";
+      //echo "<form action='delete.php' method='GET' class='admin-form'><button>Delete<input type='hidden' name='id' value='" . $row['id'] . "'></form></td>";
+      // DO NOT NEED FORMS, JUST QUERY STRING PARAMETER
+      echo "<td><a href='edit.php?id=" . $row["id"] . "'>Edit</a> | <a href='delete.php?id=" . $row["id"] . "'>Delete</a></td>";
+			echo "</tr>";
 		}
 	}
   echo "</table>";
