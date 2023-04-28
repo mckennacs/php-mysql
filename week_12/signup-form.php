@@ -5,8 +5,6 @@ Module 12 Assignment
 -->
 
 <?php
-  // Include mysql database login info
-	include_once 'includes/dbh.inc.php';
   // Include LoginBox
   include_once ('includes/LoginBox.php');
 
@@ -40,12 +38,13 @@ Module 12 Assignment
 <?php
 
   // Creates new LoginBox() object to output new account form
-	$account_form = new LoginBox();
+	$account_form = new LoginBox($conn);
 
 	try
 	{
     // Outputs new account form
 		echo $account_form->getAccountForm();
+
 		$account_exception = new Exception("LoginBox could not be displayed.");
 	}
 	catch(Exception $account_exception)

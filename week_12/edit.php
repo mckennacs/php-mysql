@@ -9,11 +9,10 @@ Module 12 Assignment
 <?php
 	include_once 'includes/dbh.inc.php';
   include_once 'includes/LoginBox.php';
-	/** @var $conn */
-	if($conn->connect_error)
-	{
+	if($conn->connect_error) {
 		die("Connection failed: " . $conn->connect_error);
 	}
+
   $sql = "SELECT * FROM users WHERE id = " . $_GET['id'] . ";";
   $result = mysqli_query($conn, $sql);
   $resultCheck = mysqli_num_rows($result);
@@ -51,10 +50,9 @@ Module 12 Assignment
   // $row = mysqli_fetch_assoc($result);
 
   if ($resultCheck > 0) {
-    // TODO change action to update.php
     $form = "<form action='update.php' method='POST'>";
-    $form.= '<label for="username" id="username" class="form-field">Username:</label><br />
-				<input type="text" id="username" name="username" class="form-field" placeholder=' . $row['name'] . '><br />';
+    $form.= '<label for="name" id="name" class="form-field">Username:</label><br />
+				<input type="text" id="name" name="name" class="form-field" placeholder=' . $row['name'] . '><br />';
     $form .= '<label for="password" id="password" class="form-field">Password:</label><br />
 				<input type="password" id="password" name="password" class="form-field" placeholder=' . $row['password'] . '><br />';
     $form .= '<label for="first-name" id="first-name" class="form-field">First Name:</label><br />

@@ -31,6 +31,8 @@ Module 12 Assignment
 		// Submit button
 		protected string $submit;
 
+    public object $db_connection;
+
   /**
 	  * __construct function to establish parameter values
 	  * @var string $username
@@ -46,6 +48,7 @@ Module 12 Assignment
 	  */
 		function __construct(string $submit ='Submit')
 		{
+      $this->db_connection = $conn;
 			$this->username = 'student';
 			$this->password = 'CIS166';
 			// Login username and password fields
@@ -164,7 +167,7 @@ Module 12 Assignment
 		* @return void
 		* 	Does not return a variable. If login fields are good, it sends MySQL query. If not, outputs items of $errors array
 	  */
-		function createAccount(array $new_account_info,object $conn):void
+		function createAccount(array $new_account_info):void
 		{
 			$errors =[];
 			$valid_phone_pattern = '^[1-9]{1}[0-9]{2}[-|.]{1}[1-9]{1}[0-9]{2}[-|.]{1}[0-9]{4}';
@@ -199,12 +202,12 @@ Module 12 Assignment
  				* Uses stripslashes() function to remove PHP escape characters and the mysqli function real_escape_string() to add escape characters for MySQL
  				* This may be redundant but I got MySQL errors just using addslashes() and stripslashes()
  				*/
-				$u_name = stripslashes($conn ->real_escape_string($new_account_info[0]));
-				$pwd = stripslashes($conn ->real_escape_string($new_account_info[1]));
-				$first = stripslashes($conn ->real_escape_string($new_account_info[2]));
-				$last = stripslashes($conn ->real_escape_string($new_account_info[3]));
-				$email = stripslashes($conn ->real_escape_string($new_account_info[4]));
-				$phone = stripslashes($conn ->real_escape_string($new_account_info[5]));
+				$u_name = stripslashes($this->conn ->real_escape_string($new_account_info[0]));
+				$pwd = stripslashes($this->conn ->real_escape_string($new_account_info[1]));
+				$first = stripslashes($this->conn ->real_escape_string($new_account_info[2]));
+				$last = stripslashes($this->conn ->real_escape_string($new_account_info[3]));
+				$email = stripslashes($this->conn ->real_escape_string($new_account_info[4]));
+				$phone = stripslashes($this->conn ->real_escape_string($new_account_info[5]));
 
 				// SELECT statement to check if $u_name already exits in database
 				// $sql = "SELECT * from users WHERE 'name' = " . $u_name . ";";

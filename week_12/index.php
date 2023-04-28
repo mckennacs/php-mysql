@@ -39,25 +39,27 @@ Module 11 Assignment
   include ('includes/LoginBox.php');
 
   // Creates new LoginBox object
-  $login_box = new LoginBox();
-  $login_box ->SetLabel('Log In');
+  $login_box = new LoginBox($conn);
+  $login_box ->setLabel('Log In');
 
   // Defines Exception message in case LoginBox can not be displayed
   try
   {
-    echo $login_box->DisplayLogin();
+    $login_box->displayLogin();
     $login_exception = new Exception("LoginBox could not be displayed.");
   }
   catch(Exception $login_exception)
   {
-    echo $login_exception->getMessage();
+    $login_exception->getMessage();
   }
 
   // Checks login credentials once user hits submit
   if(isset($_POST["submit"])){
-    $login_box ->CheckLogin($_POST["username"], $_POST["password"]);
+		// Assigns values of $_POST to new variables $username and $password, using addslashes() to add escape characters if required.
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $login_box->authenticate($username, $password);
   }
-
 ?>
 </main>
 </body>

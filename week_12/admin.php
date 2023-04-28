@@ -37,7 +37,6 @@ Module 12 Assignment
   // MySQL select statement
   $sql = "SELECT * FROM users;";
   // Uses mysqli_query function to use the $conn mysqli_connect function as defined in dbh.inc.php
-  /** @var $conn */
   $result = mysqli_query($conn, $sql);
   // Checks to see if any rows are present in table
 	$resultCheck = mysqli_num_rows($result);
@@ -65,9 +64,8 @@ Module 12 Assignment
       echo "<td>" . $row['last_name'] . "</td>";
       echo "<td>" . $row['email'] . "</td>";
       echo "<td>" . $row['phone'] . "</td>";
-      // echo "<td><form action='edit.php' method='GET'><input type='submit' name='" . $row['id'] . "' value='Edit'></form></td>";
-      echo "<td><form action='edit.php' method='GET' class='admin-form'><button>Edit<input type='hidden' name='id' value='" . $row['id'] . "'></button></form>";
-      echo "<form action='delete.php' method='GET' class='admin-form'><button>Delete<input type='hidden' name='id' value='" . $row['id'] . "'></form></td>";
+      echo "<td><a href='edit.php?id=" . $row["id"] . "'>Edit</a> | <a href='delete.php?id=" . $row["id"] . "'>Delete</a></td>";
+      echo "</tr>";
       echo "</tr>";
 		}
 	}
