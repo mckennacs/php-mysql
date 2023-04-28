@@ -222,6 +222,8 @@ Module 12 Assignment
 		* @return boolean
 		*   If password entered matches stored password, returns true. Else returns false
 		*/
+
+    //TODO THIS
 		function authenticate(string $username, string $password):void
 		{
 
