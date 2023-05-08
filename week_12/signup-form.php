@@ -17,28 +17,13 @@ Module 12 Assignment
 	<link href="css/style.css" rel="stylesheet" type="text/css" />
 	<title>Sign Up</title>
 </head>
-<header>
-  <nav>
-    <ul>
-      <li>
-        <a href="index.php">Log In</a>
-      </li>
-      <li>
-        <a href="admin.php">Admin</a>
-      </li>
-      <li>
-        <a href="signup-form.php">Sign Up</a>
-      </li>
-    </ul>
-  </nav>
-  <h2>Create New Account</h2>
-</header>
+<?php include 'includes/header.php'; ?>
 <body>
 <main>
 <?php
 
   // Creates new LoginBox() object to output new account form
-	$account_form = new LoginBox($conn);
+  $account_form = new LoginBox($conn);
 
 	try
 	{

@@ -1,10 +1,11 @@
 <!--
 Chris McKenna
 CIS 166AE
-Module 11 Assignment
+Module 13 Assignment
 -->
 
 <?php
+  session_start();
   include_once 'includes/dbh.inc.php';
 ?>
 
@@ -15,28 +16,26 @@ Module 11 Assignment
   <link href="css/style.css" rel="stylesheet" type="text/css" />
   <title>LoginBox</title>
 </head>
-<header>
-  <nav>
-    <ul>
-      <li>
-        <a href="index.php">Log In</a>
-      </li>
-      <li>
-        <a href="admin.php">Admin</a>
-      </li>
-      <li>
-        <a href="signup-form.php">Sign Up</a>
-      </li>
-    </ul>
-  </nav>
-  <h2>Log In</h2>
-</header>
-<body>
+<!-- Moved header to its own file -->
+<?php
+include 'includes/header.php';
+
+if(isset($_SESSION['valid_user'])) {
+  $bg_color = "lightgray";
+  $class = "logged-in";
+}
+else {
+  $bg_color = "#00FF94";
+  $class="";
+}
+?>
+<body style="background-color:<?php echo $bg_color; ?>" class="<?php echo $class; ?>">
+<h2>Log in</h2>
 <main>
 <?php
 
 	// Include LoginBox
-  include ('includes/LoginBox.php');
+  include 'includes/LoginBox.php';
 
   // Creates new LoginBox object
   $login_box = new LoginBox($conn);

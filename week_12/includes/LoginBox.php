@@ -1,7 +1,7 @@
 <!--
 Chris McKenna
 CIS 166AE
-Module 12 Assignment
+Module 13 Assignment
 -->
 
 <?php
@@ -35,18 +35,26 @@ Module 12 Assignment
   /**
 	  * __construct function to establish parameter values
     * @param mysqli $conn
-    *   mysqli connection established in dbh.inc.php
+    *   mysqli connection established in dbh.inc.php.
 	  * @var string $username_field
-	  * 	HTML form element for username
+	  * 	HTML form element for username.
 	  * @var string $password_field
-	  * 	HTML form element for password
+	  * 	HTML form element for password.
+    * @var string $new_username
+    *  HTML form element for new username used in signup.
+    * @var string $new_password
+    *   HTML form element for new password used in signup.
+    * @var string $new_first_name
+    *   HTML form element for new first name used in signup.
+    * @var string $new_last_name
+    *   HTML form element for new last name used in signup.
+    * @var string $new_email
+    *   HTML form element for new email used in signup.
+    * @var string $new_phone
+    *   HTML form element for new phone number used in signup.
 	  * @var string $submit
-	  * 	Text for submit button, can be changed with setLabel(). Defaults to 'Submit'
+	  * 	Text for submit button, can be changed with setLabel(). Defaults to 'Submit'.
 	  */
-    // Based on feedback from Module 12, I moved $conn from function declarations to class constructor
-    // Without this, I kept getting errors stating the $conn variable was undefined, even after including dbh.inc.php
-    // If this is still incorrect, I don't know how else to use MySQL queries in functions (as in createAccount())
-    // https://stackoverflow.com/questions/37480496/how-to-use-mysqli-in-a-class
 		function __construct(mysqli $conn)
 		{
       $this->db_conn = $conn;
@@ -74,12 +82,12 @@ Module 12 Assignment
 	/**
 	  * Function to return username and password fields and submit button.
 	  * @var string $login_form
-	  * 	String containing all HTML for login form, using concatenation assignment operator to combine elements
+	  * 	String containing all HTML for login form, using concatenation assignment operator to combine elements.
 	  * 	https://www.php.net/manual/en/language.operators.string.php
 	  * @var string $username_field
-	  * 	HTML form element for username
+	  * 	HTML form element for username.
 	  * @var string $password_field
-	  * 	HTML form element for password
+	  * 	HTML form element for password.
 	  * @return void
 	  *  Echos $login_form string. Changed from previously returning a string, so displayLogin() can be called directly without echoing the results.
 	  */
@@ -97,17 +105,17 @@ Module 12 Assignment
 		* Function to return new account registration form.
 	 	*
 		* @var string $new_username
-		* 	HTML form element for new username field
+		* 	HTML form element for new username field.
 		* @var string $new_password
-		* 	HTML form element for new password field
+		* 	HTML form element for new password field.
 		* @var string $new_first_name
-		* 	HTML form element for field to accept a new user's first name
+		* 	HTML form element for field to accept a new user's first name.
 		* @var string $new_last_name
-		* 	HTML form element for last name field
+		* 	HTML form element for last name field.
 		* @var string $new_email
-		* 	HTML form element for user's email address
+		* 	HTML form element for user's email address.
 		* @var string $new_phone
-		* 	HTML form element for user's phone number
+		* 	HTML form element for user's phone number.
 		* @return string
 		*  Returns the HTML form element as string.
 		*/
@@ -121,13 +129,29 @@ Module 12 Assignment
      * Function to create new account and insert info into MySQL database
      *
      * @param array $new_account_info
-     *		An array containing elements retrieved from $_POST, taken from
+     *		An array containing elements retrieved from $_POST.
      * @var array $errors
-     * 	Array containing error messages for field validation. If a field is invalid a string containing the error message is added to the array
+     * 	Array containing error messages for field validation. If a field is invalid a string containing the error message is added to the array.
      * @var string $valid_phone_pattern
-     * 	String used for pattern matching in regular expressions. This checks if the number and type of characters entered would make a valid phone number
+     * 	String used for pattern matching in regular expressions. This checks if the number and type of characters entered would make a valid phone number.
+     * @var string $u_name
+     *  Username, takes $new_account_info[0] and uses stripslashes(), trim() and mysqli_real_escape_string to sanitize input.
+     * @var string $pwd
+     *  Password, takes $new_account_info[1] and uses stripslashes(), trim() and mysqli_real_escape_string to sanitize input.
+     * @var string $first
+     *  First name,  takes $new_account_info[2] and uses stripslashes(), trim() and mysqli_real_escape_string to sanitize input.
+     * @var string $last
+     *  Last name, takes $new_account_info[3] and uses stripslashes(), trim() and mysqli_real_escape_string to sanitize input.
+     * @var string $email
+     *  Email address, takes $new_account_info[4] and uses stripslashes(), trim() and mysqli_real_escape_string to sanitize input.
+     * @var string $phone
+     *  Phone number, takes $new_account_info[5] and uses stripslashes(), trim() and mysqli_real_escape_string to sanitize input.
+     * @var string $sql
+     *  SQL query, used first to select user from database and updated to insert data if user is found.
+     * @var bool $result
+     *  Queries $this->db_conn using $sql string, returns true if user is found and false if not.
      * @return void
-     * 	Does not return a variable. If login fields are good, it sends MySQL query. If not, outputs items of $errors array
+     * 	Does not return a variable. If login fields are good, it sends MySQL query. If not, outputs items of $errors array.
      */
     function createAccount(array $new_account_info):void
     {
@@ -153,29 +177,15 @@ Module 12 Assignment
       // If no objects in the $errors array, variables from $new_account_info are assigned to items in the class $account_fields array
       if (!$errors)
       {
-        // Username
-        $userName = trim($new_account_info[0]);
-        // Password
-        $password = trim($new_account_info[1]);
-        // First name
-        $firstName = trim($new_account_info[2]);
-        // Last name
-        $lastName = trim($new_account_info[3]);
-        // Email
-        $userEmail = trim($new_account_info[4]);
-        // Phone number
-        $userPhone = trim($new_account_info[5]);
-
-        // Uses stripslashes() function to remove PHP escape characters and the mysqli function real_escape_string() to add escape characters for MySQL
-        $u_name = stripslashes($this->db_conn ->real_escape_string($userName));
-        $pwd = stripslashes($this->db_conn ->real_escape_string($password));
-        $first = stripslashes($this->db_conn ->real_escape_string($firstName));
-        $last = stripslashes($this->db_conn ->real_escape_string($lastName));
-        $email = stripslashes($this->db_conn ->real_escape_string($userEmail));
-        $phone = stripslashes($this->db_conn ->real_escape_string($userPhone));
+        $u_name = stripslashes($this->db_conn ->real_escape_string(trim($new_account_info[0])));
+        $pwd = stripslashes($this->db_conn ->real_escape_string(trim($new_account_info[1])));
+        $first = stripslashes($this->db_conn ->real_escape_string(trim($new_account_info[2])));
+        $last = stripslashes($this->db_conn ->real_escape_string(trim($new_account_info[3])));
+        $email = stripslashes($this->db_conn ->real_escape_string(trim($new_account_info[4])));
+        $phone = stripslashes($this->db_conn ->real_escape_string(trim($new_account_info[5])));
 
         // SELECT statement to check if $u_name already exits in database
-        $sql = "SELECT `name` FROM `users` WHERE name ='" . $u_name . "';";
+        $sql = "SELECT * FROM `users` WHERE name ='" . $u_name . "';";
         // Queries $this->db_conn using above $sql string
         $result = mysqli_query($this->db_conn, $sql);
 
@@ -185,17 +195,11 @@ Module 12 Assignment
           echo "<p>User already exists. Enter new username. You will be redirected to signup page in 3 seconds.</p>";
         }
         else {
-          // Uses password_hash() to create a new hashed password using default algorithm
-          // https://www.php.net/manual/en/function.password-hash.php
-          // I'm not sure if I need to hash the password when creating an account or just for login.
-          // Storing the password as a hash instead of plain text in the database seems more secure, but I don't know if that is what the assignment is asking for
-          $pwd_hash = password_hash($pwd, PASSWORD_DEFAULT);
           $sql = "INSERT INTO users (name, password, first_name, last_name, email, phone)
-      VALUES ('$u_name', '$pwd_hash', '$first', '$last', '$email', '$phone');";
+            VALUES ('$u_name', MD5('$pwd'), '$first', '$last', '$email', '$phone');";
           mysqli_query($this->db_conn, $sql);
           header("Location: week_12/new-account-success.html");
         }
-
       }
       else
       {
@@ -211,32 +215,43 @@ Module 12 Assignment
 
 	 /**
 		* Function to authenticate username/password
-		* Uses try/catch to check username and password, displays exception messages if invalid
+		* Uses try/catch to check username and password, displays exception messages if invalid.
     *
 		* @param string $username
-    *   User's name entered into input field
+    *   User's name entered into input field.
 		* @param string $password
-		* 	Password entered into input field
-    * @param string $hashed_password
-    *   User password, stored in database created with password_hash() in createAccount() function
-		* @return boolean
-		*   If password entered matches stored password, returns true. Else returns false
+		* 	Password entered into input field.
+    * @var string $sql
+    *   String with SQL query to check login credentials in database.
+    * @var bool $result
+    *   Queries $this->db_conn using $sql string, returns true if user is found and false if not.
+		* @return void
+		*   Doesn't return value, just checks login credentials and redirects to protected.php on login success and error.php on failure.
 		*/
 
-    //TODO THIS
 		function authenticate(string $username, string $password):void
 		{
-
+      $sql = "SELECT id FROM users WHERE name ='$username' and password = MD5('$password');";
+      $result = mysqli_query($this->db_conn, $sql);
+      if (mysqli_num_rows($result) == 1) {
+        header("Refresh:1; url=protected.php");
+        $_SESSION['valid_user'] = $username;
+        echo "<p class='success'>Logged in! Directing to member's page.</p>";
+      }
+      else {
+        header("Refresh:5");
+        echo "Login failed for user $username </br>";
+      }
     }
 
 	 /**
 	  * Function to change the label of submit buttons (protected variable)
 	  *
 	  * @param string $submit
-	  * 	sets $submit to string as passed through __construct
+	  * 	sets $submit to string as passed through __construct.
 	  * @return void
 	  *
-	  * Try/except tests to see if argument passed to setLabel() is a string, otherwise prints error message
+	  * Try/except tests to see if argument passed to setLabel() is a string, otherwise prints error message.
 	  */
 		function setLabel(string $submit):void
 		{

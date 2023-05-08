@@ -1,7 +1,7 @@
 /*
 Chris McKenna
 CIS 166AE
-Module 12 Assignment
+Module 13 Assignment
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;1,300&display=swap');
@@ -24,8 +24,16 @@ body {
   linear-gradient(360deg, #0029FF 0%, #8FFF00 100%),
   radial-gradient(100% 164.72% at 100% 100%, #6100FF 0%, #00FF57 100%),
   radial-gradient(100% 148.07% at 0% 0%, #FFF500 0%, #51D500 100%) no-repeat, fixed;
+  /*background-image: none;*/
+  /*background-color: #00FF94;*/
   background-size: contain;
   background-blend-mode: screen, color-dodge, overlay, difference, normal;
+}
+
+/* Class added to body if user is logged in */
+body.logged-in {
+  background-image: none;
+  background-color: lightgray;
 }
 
 nav ul {
@@ -145,6 +153,8 @@ a {
   margin: 2% auto;
   padding: 1%;
 }
+
+
 
 main {
   width: 90%;

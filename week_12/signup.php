@@ -9,6 +9,7 @@ Module 12 Assignment
 
 	include_once('includes/LoginBox.php');
 
+/** @noinspection PhpUndefinedVariableInspection */
   $newAccount = new LoginBox($conn);
 
   // Uses mysqli_real_escape_string, trim, and htmlspecialchars() to trim leading/trailing spaces, convert html to special characters and add escape characters to add to database
