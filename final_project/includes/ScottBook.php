@@ -168,8 +168,6 @@ class ScottBook
   * @return string
   *   Returns string with user's first name to output on index.php after logged in.
   */
-  
-
   function getValidUserName(): string{
     $valid_user = $_SESSION['valid_user'];
     $user_query = "SELECT * FROM users where username='$valid_user';";
@@ -195,7 +193,6 @@ class ScottBook
   * @return string
   *   returns user's theme name, used to determine which css file will be used to style pages.
   */
-  
   function getValidUserTheme() : string {
     // Sets theme as default until user theme is checked
     if(isset($_SESSION['valid_user'])) {
@@ -358,16 +355,30 @@ class ScottBook
 
   }
 
+ /** 
+  * Function to display 3 random pictures based on information stored in database
+  * @var string $slide_query
+  *   SQL query to select distinct entries from the slideshow table, ordered randomly, and limited to 4 pictures.
+  * @var boolean $slide_result
+  *   Indicates whether sql query succeeded
+  * @var array $row
+  *   Array with field values for images
+  * @var string $title
+  *   Title of image in slideshow table
+  * @var string $caption
+  *   Image caption stored in db
+  * @var string $file_name
+  *   String containing file name with extension, passed into <img> tag in HTML
+  */
   function displaySlideshow(): void {
+    // Selects 4 random entries from slideshow table 
     $slide_query = "SELECT DISTINCT * from slideshow ORDER BY RAND() LIMIT 4";
     $slide_result = $this->mysqli->query($slide_query);
     while ($row = $slide_result->fetch_assoc()) {
       $title = $row["title"];
       $caption = $row["caption"];
       $file_name = $row["file_name"];
-//      echo "$title</br>";
-//      echo "$caption</br>";
-//      echo "$file_name</br>";
+      // Outputs HTML figure, inserting $file_name and $title into the <img> source and alt text. $caption is included in <p> within <figcaption>
       echo "<figure>";
       echo "<img src='images/".$file_name."' alt='$title'>";
       echo "<figcaption>";
