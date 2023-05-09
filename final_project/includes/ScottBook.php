@@ -91,7 +91,7 @@ class ScottBook
    *  SQL insert string inserting user information into DB
    *
    * @return void
-   *
+   *  No return value, outputs SQL query directly
    */
   function createAccount(): void
   {
@@ -157,8 +157,18 @@ class ScottBook
  /** 
   * Function to get user's first name if logged in, based on $_SESSION['valid_user']
   * 
-  * 
+  * @var string $valid_user
+  *   Valid username, set during login. Indicates whether user is logged into registered account.
+  * @var string $user_query
+  *   Select statement for db to return the user with $valid_user as their username
+  * @var boolean $user_result
+  *   Indicates whether SQL query was a success/returned rows
+  * @var string $f_name
+  *   User's first name as stored in db
+  * @return string
+  *   Returns string with user's first name to output on index.php after logged in.
   */
+  
 
   function getValidUserName(): string{
     $valid_user = $_SESSION['valid_user'];
@@ -171,10 +181,23 @@ class ScottBook
     }
     return $f_name;
   }
-
+  
+ /**
+  * Function to get logged in user's theme from database
+  * @var string $valid_user
+  *   Session variable with valid user's username if logged in
+  * @var string $user_query
+  *   SQL query to select user from database with the username as $valid_user
+  * @var boolean $user_result
+  *   Determines if user is found in database
+  * @var string $theme
+  *   Theme name contained in "theme" field for specified user.
+  * @return string
+  *   returns user's theme name, used to determine which css file will be used to style pages.
+  */
+  
   function getValidUserTheme() : string {
     // Sets theme as default until user theme is checked
-
     if(isset($_SESSION['valid_user'])) {
       $valid_user = $_SESSION['valid_user'];
       $user_query = "SELECT * FROM users where username='$valid_user';";
@@ -190,10 +213,23 @@ class ScottBook
     }
     return $theme;
   }
-
+  
+ /**
+  * Function to display admin panel for admin user
+  * 
+  * @var string $admin_query
+  *   SQL query which selects all items in users table
+  * @var boolean $admin_result
+  *   Indicates whether $admin_query returned db rows
+  * @var array $row
+  *   Array representing fields in single database row
+  * @return void
+  *   Outputs table, populated with user info
+  */
   function displayAdminPanel():void {
     $admin_query = "SELECT * FROM users;";
     $admin_result = $this->mysqli->query($admin_query);
+    // Table and headings output as HTML
     echo "<table>";
     echo "<tr>";
     echo "<th>ID</th>";
@@ -207,7 +243,8 @@ class ScottBook
     echo "<th>Theme</th>";
     echo "<th>Edit User</th>";
     echo "</tr>";
-
+    
+    // If results are returned from query, outputs values to table
     if ($admin_result->num_rows > 0) {
       while ($row = $admin_result->fetch_assoc()) {
         echo "<tr>";
