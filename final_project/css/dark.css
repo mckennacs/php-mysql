@@ -1,0 +1,146 @@
+/*https://coolors.co/palette/0b132b-1c2541-3a506b-5bc0be-6fffe9*/
+
+/* Font: Atkinson Hyperlegible */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/*--oxford-blue: #0b132bff;*/
+/*--space-cadet: #1c2541ff;*/
+/*--yinmn-blue: #3a506bff;*/
+/*--verdigris: #5bc0beff;*/
+/*--fluorescent-cyan: #6fffe9ff;*/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    height: 100vh;
+}
+
+body {
+    background-color: #3A506B;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background: hsla(225, 59%, 11%, 1);
+    background: linear-gradient(225deg, hsla(225, 59%, 11%, 1) 0%, hsla(213, 30%, 32%, 1) 63%);
+    padding: 2%;
+    border-bottom: 1px solid #fff;
+}
+
+#logo {
+    background-color: #0B132B;
+    border: 7px solid #6fffe9ff;
+    padding: 1% 2%;
+    border-radius: 1rem;
+}
+
+header form {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    margin: 1%;
+    /*justify-self: right;*/
+    /*align-self: end;*/
+}
+
+header img {
+    float: right;
+    margin: 1%;
+    opacity: 80%;
+}
+
+header h1.english {
+    margin: 0;
+    color: #fff;
+    font-size: xxx-large;
+}
+
+header h1.japanese {
+    display: none;
+}
+
+header h2 {
+    color: #fff;
+}
+
+nav {
+    background-color: #1C2541;
+    padding: 1%;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 1vh;
+    width: 100%;
+}
+
+nav ul li a {
+    /*min-width: 20vw;*/
+    border: 1px solid #fff;
+    padding: 1% 10%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #1c2541ff;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #5BC0BE;
+}
+main {
+    border: 5px solid #6fffe9ff;
+    min-height: 30vh;
+    margin: 5%;
+    padding: 3%;
+    color: #fff;
+}
+
+main form {
+    padding: 1%;
+}
+
+fieldset {
+    width: 50%;
+    padding: 1%;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    margin: auto;
+}
+
+form input {
+    width: 100%;
+    margin: auto;
+}
+
+footer {
+    background-color: #0b132bff;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    padding: 1%;
+    color: #fff;
+    /*display: flex;*/
+    /*justify-content: space-evenly;*/
+}
+
+footer p {
+    width: 100%;
+    text-align: center;
+}

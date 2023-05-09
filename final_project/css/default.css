@@ -1,0 +1,144 @@
+/*--lapis-lazuli: #146180ff;*/
+/*--caribbean-current: #127582ff;*/
+/*--persian-green: #139689ff;*/
+/*--jungle-green: #17af8fff;*/
+/*--cream: #ebedc4ff;*/
+
+/* Font: Atkinson Hyperlegible */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    /*height: 100vh;*/
+}
+
+body {
+    background-color: #ebedc4ff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*background-color: #146180ff;*/
+    background: linear-gradient(190deg, hsla(197, 73%, 29%, 1) 0%, hsla(167, 77%, 39%, 1) 77%);
+    padding: 2%;
+    border-bottom: 1px solid #fff;
+}
+
+#logo {
+    background-color: #127582ff;
+    border: 7px solid #ebedc4ff;
+    padding: 1% 2%;
+    border-radius: 1rem;
+}
+
+header form {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    margin: 1%;
+    /*justify-self: right;*/
+    /*align-self: end;*/
+}
+
+header img {
+    float: right;
+    margin: 1%;
+    opacity: 80%;
+}
+
+header h1.english {
+    margin: 0;
+    color: #fff;
+    font-size: xxx-large;
+}
+
+header h1.japanese {
+    display: none;
+}
+
+header h2 {
+    color: #fff;
+}
+
+nav {
+    background-color: #139689ff;
+    padding: 1%;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 1vh;
+    width: 100%;
+}
+
+nav ul li a {
+    /*min-width: 20vw;*/
+    border: 1px solid #fff;
+    padding: 1% 10%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #146180ff;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #127582ff;
+}
+main {
+    border: 5px solid #127582ff;
+    min-height: 30vh;
+    margin: 5%;
+    padding: 3%;
+}
+
+main form {
+    padding: 1%;
+}
+
+fieldset {
+    width: 50%;
+    padding: 1%;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    margin: auto;
+}
+
+form input {
+    width: 100%;
+    margin: auto;
+}
+
+footer {
+    background-color: #139689ff;
+    margin: 0;
+    width: 100%;
+    position: absolute;
+    /*bottom: 0;*/
+    padding: 1%;
+    /*display: flex;*/
+    /*justify-content: space-evenly;*/
+}
+
+footer p {
+    width: 100%;
+    text-align: center;
+    color: #fff;
+}

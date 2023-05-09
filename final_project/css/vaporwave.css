@@ -1,0 +1,156 @@
+/*https://coolors.co/palette/0b132b-1c2541-3a506b-5bc0be-6fffe9*/
+
+/* Font: Atkinson Hyperlegible */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+/*--violet-web-color: #ff90e3ff;*/
+/*--violet-web-color-2: #e98df9ff;*/
+/*--heliotrope: #da81fdff;*/
+/*--heliotrope-2: #d27cfdff;*/
+/*--heliotrope-3: #cd76ffff;*/
+/*--heliotrope-4: #c971ffff;*/
+/*--lavender-floral: #b783ffff;*/
+/*--tropical-indigo: #9597ffff;*/
+/*--light-sky-blue: #8ccdffff;*/
+/*--electric-blue: #87fbffff;*/
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Atkinson Hyperlegible', sans-serif;
+    height: 100vh;
+}
+
+body {
+    background-color: #8ccdffff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /*background: hsla(225, 59%, 11%, 1);*/
+    /*background: linear-gradient(225deg, hsla(225, 59%, 11%, 1) 0%, hsla(213, 30%, 32%, 1) 63%);*/
+    /* https://codioful.com/editor */
+    background: linear-gradient(327deg, #ffcbf2 0%, #e5b3fe 43%, #c0fdff 83%),
+    linear-gradient(228.24deg, #d8bbff 47%, #c8e7ff 85.38%);
+    background-blend-mode: hue, normal;
+    padding: 2%;
+    border-bottom: 1px solid #fff;
+}
+
+#logo {
+    background-color: #E98DF9;
+    border: 7px solid #9597ffff;
+    padding: 1% 2%;
+    border-radius: 1rem;
+}
+
+header form {
+    display: flex;
+    flex-direction: column;
+    float: right;
+    margin: 1%;
+    /*justify-self: right;*/
+    /*align-self: end;*/
+}
+
+header img {
+    float: right;
+    margin: 1%;
+    opacity: 80%;
+}
+
+header h1.english {
+    display: none;
+}
+
+header h1.japanese {
+    margin: 0;
+    color: #000;
+    font-size: xxx-large;
+}
+
+header h2 {
+    color: #000;
+}
+
+nav {
+    background-color: #b783ffff;
+    padding: 1%;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-evenly;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 1vh;
+    width: 100%;
+}
+
+nav ul li a {
+    /*min-width: 20vw;*/
+    border: 1px solid #fff;
+    padding: 1% 10%;
+    text-decoration: none;
+    color: #fff;
+    background-color: #b783ffff;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #8ccdffff;
+}
+main {
+    border: 5px solid #ff90e3ff;
+    min-height: 30vh;
+    margin: 5%;
+    padding: 3%;
+    color: #000;
+    background-color: #c971ffff;
+}
+
+main form {
+    padding: 1%;
+}
+
+fieldset {
+    width: 50%;
+    padding: 1%;
+    margin: auto;
+}
+
+table {
+    width: 100%;
+    margin: auto;
+}
+
+form input {
+    width: 100%;
+    margin: auto;
+}
+
+footer {
+    background-color: #9597ffff;
+    margin: 0;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    padding: 1%;
+    color: #fff;
+    /*display: flex;*/
+    /*justify-content: space-evenly;*/
+}
+
+footer p {
+    width: 100%;
+    text-align: center;
+}
