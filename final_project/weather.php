@@ -5,6 +5,8 @@ Final Project
 -->
 
 <?php
+// I couldn't get this to work. I tried a few methods, using DOMDocument and Simplexml to read rss files kept giving me HTTP errors
+// I looked into using web services but the only documented way to do it I found required a paid API key.
 //DOMDocument() older?
 // https://bavotasan.com/2010/display-rss-feed-with-php/
 // https://www.php.net/manual/en/class.domdocument.php
