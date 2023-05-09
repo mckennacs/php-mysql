@@ -1,3 +1,9 @@
+<!--
+Chris McKenna
+CIS 166AE
+Final Project
+-->
+
 <?php
 session_start();
 include_once 'includes/ScottBook.php';

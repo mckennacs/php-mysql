@@ -1,3 +1,9 @@
+<!--
+Chris McKenna
+CIS 166AE
+Final Project
+-->
+
 <!-- The example includes an opening php tag but doing this breaks my IDE (PHPStorm), so I didn't use it here -->
 <header>
   <!-- Display using variable set in the index file and passed to the include file ???? -->

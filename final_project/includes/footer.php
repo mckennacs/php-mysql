@@ -1,3 +1,9 @@
+<!--
+Chris McKenna
+CIS 166AE
+Final Project
+-->
+
 <?php date_default_timezone_set("America/Phoenix"); ?>
 <footer>
   <p>Current time:</p>

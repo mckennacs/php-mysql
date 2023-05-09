@@ -1,3 +1,10 @@
+<!--
+Chris McKenna
+CIS 166AE
+Final Project
+-->
+
+
 <?php
 
 // Includes database handler
@@ -5,23 +12,47 @@ include 'dbh.php';
 
 class ScottBook
 {
-  private array $menuArray;
+  // Mysqli object created in dbh.php
   protected mysqli $mysqli;
 
+  /**
+   * ScottBook class constructor
+   *  For this project the only item passed to the constructor is the mysqli connection. Displaying page elements (header, nav, footer) are split into the includes folder
+   *  Here, the class is used mainly for interacting with the MySQL database
+   *
+   * @param mysqli $conn
+   *  mysqli connection established in dbh.php
+   */
   function __construct(mysqli $conn)
   {
     $this->mysqli = $conn;
   }
 
+  /**
+   * Function to display main menu
+   *
+   * @var string $sql
+   *  String with MySQL query to send to database to get menu items.
+   * @var bool $result
+   *  Boolean representing success/failure of $sql query.
+   * @var array $row
+   *  Array of fields from menu table
+   * @var mixed $link_name
+   *  The value of the link_name field for an entry in the menu table, displayed in link text
+   * @var mixed $link_url
+   *  Value of the link_url field of the menu table, the url to the menu item
+   * @var mixed $link_status
+   *  A mixed PHP variable representing a MySQL boolean which indicates if the menu item is displayed or not
+   * @return void
+   *  Doesn't return a value; uses a loop to output the items in each table row to its own HTML <li> item
+   */
   function getMenu(): void
   {
-    // TODO: Figure out link order
     $sql = "SELECT link_name, link_url, link_order, link_status from menu ORDER BY link_order;";
     $result = $this->mysqli->query($sql);
     while ($row = $result->fetch_assoc()) {
       $link_name = $row["link_name"];
       $link_url = $row["link_url"];
-      $link_order = $row["link_order"];
       $link_status = $row["link_status"];
       // Boolean is stored in DB as TINYINT: 0 is false and 1 is true.
       // If $link_status is 0, then echos <li> with CSS `display` set to `none`, otherwise outputs normally
@@ -33,6 +64,35 @@ class ScottBook
     }
   }
 
+  /**
+   * Function to create new account using information entered by the user, taken from $_POST
+   *
+   * @var string $username
+   *   String for the user's username, using mysqli real_escape_string to escape necessary characters.
+   * @var string $password
+   *  Same as above, for user password
+   * @var string $first_name
+   *  String for user's first name
+   * @var string $last_name
+   *  String for user's last name
+   * @var string $full_name
+   *  $first_name and $last_name concatenated, representing full name
+   * @var string $phone
+   *  User's phone number (optional)
+   * @var string $theme_value
+   *  The $_POST item for the radio group to select a user's theme
+   * @var string $theme
+   *  The value of the selected theme button
+   * @var string $user_query
+   *  SQL query to check if user exists
+   * @var bool $user_result
+   *  Boolean representing whether sql query was successful
+   * @var string $sql_insert
+   *  SQL insert string inserting user information into DB
+   *
+   * @return void
+   *
+   */
   function createAccount(): void
   {
     if (isset($_POST['submit'])) {
@@ -51,14 +111,6 @@ class ScottBook
       } elseif ($theme_value == "vaporwave") {
         $theme = "vaporwave";
       }
-      echo "$username<br>";
-      echo "$password<br>";
-      echo "$first_name<br>";
-      echo "$last_name<br>";
-      echo "$full_name<br>";
-      echo "$phone<br>";
-      echo "$email<br>";
-      echo "$theme<br>";
 
       $user_query = "SELECT * from users where username = '$username'";
       $user_result = $this->mysqli->query($user_query);
@@ -71,7 +123,6 @@ class ScottBook
         $this->mysqli->query($sql_insert);
         echo "User added.";
       }
-
     }
   }
 
