@@ -2,6 +2,9 @@
 Chris McKenna
 CIS 166AE
 Final Project
+
+I know this is incomplete, but I wanted to turn in what I was able to finish before the deadline. 
+I tried to get most of the functionality (login, register, admin page, user-determined themes), but I was only able to finish the slideshow function
 -->
 
 <?php
