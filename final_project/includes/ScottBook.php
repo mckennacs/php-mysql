@@ -89,7 +89,6 @@ class ScottBook
    *  Boolean representing whether sql query was successful
    * @var string $sql_insert
    *  SQL insert string inserting user information into DB
-   *
    * @return void
    *  No return value, outputs SQL query directly
    */
@@ -137,7 +136,8 @@ class ScottBook
   *   SQL query to select user from users table based on username and encrypted password
   * @var boolean $login_result
   *   Boolean representing whether $login_query returned any results
-  * 
+  * @return void
+  *   Submits SQL query, displays success/fail login message and redirects to index.php
   */
 
   function authenticate(string $username, string $password): void
@@ -267,6 +267,21 @@ class ScottBook
       echo "No users found.";
     }
   }
+  
+ /** 
+  * Function to display admin form to edit user info and submit changes to DB
+  * 
+  * @var string $edit_query
+  *   SQL query to select user based on $_GET['id'] which is passed from admin panel
+  * @var boolean $edit_result
+  *   Indicates if query was success or failure
+  * @var array $row
+  *   Array returned from fetch_assoc() of successful sql query, representing fields for that row of the users table
+  * @var string $edit_form
+  *   String representing HTML elements for form to edit user
+  * @return void
+  *   No return value, outputs table and submits sql query
+  */
 
   function editUser():void {
     $edit_query = "SELECT * FROM users WHERE id = " . $_GET['id'] . ";";
