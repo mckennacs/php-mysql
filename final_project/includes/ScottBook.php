@@ -125,6 +125,20 @@ class ScottBook
       }
     }
   }
+  
+ /** 
+  * Function to authenticate user's login credentials with username/password stored in database
+  * 
+  * @param string $username
+  *   String containing username entered in login field
+  * @param string $password
+  *   String for user's password
+  * @var string $login_query
+  *   SQL query to select user from users table based on username and encrypted password
+  * @var boolean $login_result
+  *   Boolean representing whether $login_query returned any results
+  * 
+  */
 
   function authenticate(string $username, string $password): void
   {
@@ -139,6 +153,12 @@ class ScottBook
       echo "<p>Login failed. Please try again.</p>";
     }
   }
+  
+ /** 
+  * Function to get user's first name if logged in, based on $_SESSION['valid_user']
+  * 
+  * 
+  */
 
   function getValidUserName(): string{
     $valid_user = $_SESSION['valid_user'];
