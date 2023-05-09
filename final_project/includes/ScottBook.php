@@ -290,6 +290,7 @@ class ScottBook
 
     if($edit_result->num_rows > 0) {
       $edit_form = "<form action='../update.php' method='post'>";
+      // Username not able to be edited, form is readonly
       $edit_form .= "<label>Username: </label></br>
         <input type='text' id='username' name='username' placeholder='". $row['username'] . "' readonly></br>";
       $edit_form .= "<label>Password: </label></br>
@@ -304,8 +305,6 @@ class ScottBook
         <input type='tel' id='phone' name='phone' placeholder='". $row['phone'] . "' pattern='[1-9]{1}[0-9]{2}[-|.]{1}[1-9]{1}[0-9]{2}[-|.]{1}[0-9]{4}'></br>";
       $edit_form .= "<label>Theme (default, dark, vaporwave): </label></br>
         <input type='text' id='theme' name='theme' placeholder='". $row['theme'] . "'></br>";
-
-
       $edit_form .= "<input type='hidden' id='id' name='id' value='". $_GET['id'] ."'></br>";
       $edit_form .= "<input type='submit' id='submit' name='submit' value='Edit User'>";
       $edit_form .= "</form>";
@@ -314,10 +313,29 @@ class ScottBook
     }
   }
 
+ /** 
+  * Function to submit updated information to database
+  * 
+  * @var int $id
+  *   User ID, from $_POST which was submitted with update form
+  * @var string $password
+  *   String for password to send to database, escaped with real_escape_string
+  * @var string $first_name
+  *   String for first name to send to database, escaped with real_escape_string
+  * @var string $last_name
+  *   String for last name to send to database, escaped with real_escape_string
+  * @var string $full_name
+  *   Combined $first_name and $last_name strings
+  * @var string email
+  *   Updated email.
+  * @var string phone
+  *   Phone number
+  * @return void
+  *   No return value, submits sql query
+  */
   function updateUser():void {
     if(isset($_POST['submit'])) {
       $id = $_POST['id'];
-//      $username = $this->mysqli->real_escape_string($_POST['username']);
       $password = $this->mysqli->real_escape_string($_POST['password'] ?? '');
       $first_name = $this->mysqli->real_escape_string($_POST['first_name'] ?? '');
       $last_name = $this->mysqli->real_escape_string($_POST['last_name'] ?? '');
