@@ -217,5 +217,25 @@ class ScottBook
 
   }
 
+  function displaySlideshow(): void {
+    $slide_query = "SELECT DISTINCT * from slideshow ORDER BY RAND() LIMIT 4";
+    $slide_result = $this->mysqli->query($slide_query);
+    while ($row = $slide_result->fetch_assoc()) {
+      $title = $row["title"];
+      $caption = $row["caption"];
+      $file_name = $row["file_name"];
+//      echo "$title</br>";
+//      echo "$caption</br>";
+//      echo "$file_name</br>";
+      echo "<figure>";
+      echo "<img src='images/".$file_name."' alt='$title'>";
+      echo "<figcaption>";
+      echo "<h3>$title</h3>";
+      echo "<p>$caption</p>";
+      echo "</figcaption>";
+      echo "</figure>";
+    }
+  }
+
 
 }

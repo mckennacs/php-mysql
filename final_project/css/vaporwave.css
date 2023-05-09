@@ -122,6 +122,10 @@ main form {
     padding: 1%;
 }
 
+main section {
+    display: flex;
+}
+
 fieldset {
     width: 50%;
     padding: 1%;
@@ -136,6 +140,23 @@ table {
 form input {
     width: 100%;
     margin: auto;
+}
+
+figure {
+    width: 33%;
+    border: 3px solid #87fbffff;
+    background-color: #9597ffff;
+    color: #fff;
+}
+
+figure img {
+    width: 100%;
+}
+
+figcaption {
+    width: 100%;
+    text-align: center;
+    padding: 5%;
 }
 
 footer {

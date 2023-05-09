@@ -99,11 +99,16 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #127582ff;
 }
+
 main {
     border: 5px solid #127582ff;
     min-height: 30vh;
     margin: 5%;
     padding: 3%;
+}
+
+main section {
+    display: flex;
 }
 
 main form {
@@ -124,6 +129,23 @@ table {
 form input {
     width: 100%;
     margin: auto;
+}
+
+figure {
+    width: 33%;
+    border: 3px solid #127582ff;
+    background-color: #146180ff;
+    color: #fff;
+}
+
+figure img {
+    width: 100%;
+}
+
+figcaption {
+    width: 100%;
+    text-align: center;
+    padding: 5%;
 }
 
 footer {

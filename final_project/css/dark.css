@@ -108,6 +108,10 @@ main {
     color: #fff;
 }
 
+main section {
+    display: flex;
+}
+
 main form {
     padding: 1%;
 }
@@ -126,6 +130,23 @@ table {
 form input {
     width: 100%;
     margin: auto;
+}
+
+figure {
+    width: 33%;
+    border: 3px solid #5bc0beff;
+    background-color: #0b132bff;
+    color: #fff;
+}
+
+figure img {
+    width: 100%;
+}
+
+figcaption {
+    width: 100%;
+    text-align: center;
+    padding: 5%;
 }
 
 footer {
